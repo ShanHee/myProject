@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<link rel="stylesheet" href="../css/framework/box/index.css" type="text/css"></link>
+<link href="../css/framework/box/box.all.css" rel="stylesheet" type="text/css"/>
+<link href="../css/framework/box/register.css" rel="stylesheet" type="text/css"/>
+<script src="../js/libs/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="../js/controllers/template.js" type="text/javascript"></script>
+<script src="../js/controllers/login.js" type="text/javascript"></script>
+<body>
+<div id="myheader"></div>
+
+<div class="wrap">
+    <div class="cover-title">
+        当前位置：<a href="./index.html">首页</a> &gt;&gt; <a href="login.jsp">会员登录</a>
+    </div>
+</div>
+
+
+<div class="fn-clear"></div>
+
+<div class="wrap">
+    <div class="whitebox">
+
+        <h1>用户登录</h1>
+        <div>
+            <input type="hidden" name="actiontype" value="login"/>
+
+            <input type="hidden" name="errorurl" value="./login.html"/>
+
+            <div class="reg-box">
+
+                <div class="reg-content">
+
+                    <dl>
+                        <label id="showResult"></label>
+
+                    </dl>
+                    <dl>
+                        <dt>用户名:</dt>
+                        <dd>
+                            <input type="text" class="ui-input" id="username"
+                                   name="accountname" required autofocus>
+
+                        </dd>
+
+                    </dl>
+
+                    <dl>
+                        <dt>密码:</dt>
+                        <dd>
+                            <input type="password" class="ui-input" id="userpassword"
+                                   name="password" required minlength="6" maxlength="15">
+
+                        </dd>
+
+                    </dl>
+
+                    <dl>
+                        <dt></dt>
+                        <dd>
+                            <input type="radio" name="usertype" checked="checked" value="0"/>会员
+                            <input type="radio" name="usertype" value="1"/> 商户
+                        </dd>
+
+                    </dl>
+
+                    <dl>
+                        <dt></dt>
+                        <dd>
+                            <input type="button" class="orange-button" id="btnLogin" value="登录" name="btnLogin">
+                        </dd>
+
+                    </dl>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="fn-clear"></div>
+</body>
+</html>

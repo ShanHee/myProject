@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" href="../css/framework/box/index.css" type="text/css"></link>
+    <link href="../css/framework/box/box.all.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/framework/box/register.css" rel="stylesheet" type="text/css"/>
+    <script src="../js/libs/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="../js/controllers/template.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="myheader"></div>
+<div class="wrap">
+    <div class="cover-title">
+        当前位置：<a href="./index.html">首页</a> &gt;&gt; <a href="register.jsp">系统注册</a>
+    </div>
+</div>
+
+
+<div class="fn-clear"></div>
+
+<div class="wrap">
+    <div class="whitebox">
+
+        <h1>用户注册</h1>
+        <form name="form1" id="form1" method="post" action="/meal/admin/huiyuanmanager.do">
+            <input type="hidden" name="actiontype" value="save" />
+            <div class="reg-box">
+
+                <div class="reg-title">
+
+
+                </div>
+                <div class="reg-content">
+                    <dl>
+                        <dt>用户名:</dt>
+                        <dd>
+                            <input type="text" value="" validate="{required:true,messages:{required:'请输入账户名'}}" class="input width250" id="txtHuiyuanname"
+                                   name="accountname">
+
+                        </dd>
+
+                    </dl>
+
+                    <dl>
+                        <dt>密码:</dt>
+                        <dd>
+                            <input type="password" validate="{required:true,messages:{required:'请输入密码'}}" class="input width250" id="txtPassword"
+                                   name="password">
+
+                        </dd>
+
+                    </dl>
+
+                    <dl>
+                        <dt>再次输入密码:</dt>
+                        <dd>
+                            <input type="password" validate="{required:true,equalTo:'#txtPassword',messages:{required:'请再次输入密码',equalTo:'两次密码不一致'}}" class="input width250" id="txtPassword2"
+                                   name="password2">
+
+                        </dd>
+
+                    </dl>
+
+                    <dl>
+                        <dt>邮箱:</dt>
+                        <dd>
+                            <input type="text"  value="" validate="{required:true,email:true,messages:{required:'请输入邮箱',email:'请输入正确邮箱'}}" class="input width250" id="txtEamil"
+                                   name="email">
+
+                        </dd>
+
+                    </dl>
+                    <dl>
+                        <dt>喜欢口味:</dt>
+                        <dd>
+
+
+
+                            <input type="radio" checked="checked" name="kouwei"  value="麻辣"/> 麻辣
+
+
+
+
+
+                            <input type="radio" name="kouwei"  value="甜食"/> 甜食
+
+
+
+
+                            <input type="radio" name="kouwei"  value="鲜美"/> 鲜美
+
+
+
+
+                        </dd>
+
+                    </dl>
+                    <dl>
+                        <dt></dt>
+                        <dd>
+                            <input type="submit" class="btn btn-default" id="btnReigster"
+                                   value="注册" name="btnReigster">
+                        </dd>
+
+                    </dl>
+
+
+                </div>
+
+
+            </div>
+        </form>
+
+    </div>
+
+
+</div>
+
+<div class="fn-clear"></div>
+
+</body>
+</html>

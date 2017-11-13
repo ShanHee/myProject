@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>用户信息</title>
+    <link rel="stylesheet" href="../../css/framework/box/index.css" type="text/css"/>
+    <link href="../../css/framework/box/box.all.css" rel="stylesheet" type="text/css"/>
+    <script src="../../js/libs/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="../../js/controllers/userTemplate.js" type="text/javascript"></script>
+
+
+</head>
+<body>
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $(".main-nav .menus li a").removeClass("current");
+        var headid = 'null';
+        if (headid != 'null') {
+
+            $("#" + headid).addClass("current");
+        }
+
+        $(".exit").click(function () {
+
+            var pageurl_pagescope = $("#pageurl_pagescope").val();
+
+            $.ajax({
+
+                url: encodeURI('/meal/admin/huiyuanmanager.do?actiontype=exit'),
+                method: 'get',
+                success: function () {
+                    window.location.reload();
+                },
+                error: function (xmhttprequest, status, excetpion) {
+                    $.alert("系统错误，错误编码" + status);
+                }
+            })
+
+        })
+    })
+
+</script>
+
+
+<div id="myheader">
+</div>
+<div class="wrap">
+    <div class="cover-title">
+        当前位置：<a href="../index.html">首页</a> &gt;&gt; 购物车
+    </div>
+</div>
+
+
+<div class="fn-clear"></div>
+
+<div class="wrap">
+
+    <div class="main">
+
+
+        <script type="text/javascript">
+
+            $(function () {
+
+                $("#side-menu .menu-group li").removeClass("current");
+
+                var seedid = 'm201';
+
+                if (seedid != "null")
+                    $("#" + seedid).addClass("current");
+                else
+                    $("#m1").addClass("current");
+
+            })
+
+        </script>
+        <div id="side-menu">
+
+
+            <div class="menu-group">
+                <h2>
+                    订单信息
+                </h2>
+                <ul>
+
+                    <li id="101">
+                        <a href="/meal/admin/dingdanmanager.do?seedid=101&xiadanren=111&isurl=1&actiontype=get&forwardurl=/e/huiyuan/dingdanmanager.jsp">我的订单</a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+            <div class="menu-group">
+                <h2>
+                    账户信息
+                </h2>
+                <ul>
+                    <li id="m201" class="current">
+                        <a href="/meal/e/huiyuan/accountinfo.jsp?seedid=m201">账户信息</a>
+                    </li>
+                    <li id="m202">
+                        <a href="/meal/e/huiyuan/yue.jsp?seedid=m202">账户余额</a>
+                    </li>
+                    <li id="m206">
+                        <a href="/meal/e/huiyuan/jifen.jsp?seedid=m206">我的积分</a>
+                    </li>
+                    <li id="m203">
+                        <a href="/meal/e/huiyuan/modifypw.jsp?seedid=m203" target="_self">密码修改</a>
+                    </li>
+                    <li id="m204">
+                        <a href="/meal/e/huiyuan/modifyinfo.jsp?seedid=m204" target="_self">信息修改</a>
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </div>
+        <div class="main-content">
+
+            <table cellpadding="0" cellspacing="1" class="grid" width="100%">
+                <tr>
+                    <td width="15%" align="right" class="title">账号:</td>
+                    <td width="35%">111(111)</td>
+                    <td width="*" colspan="2" rowspan="5">
+
+                        <img src="/meal/upload/default_tou.gif" width="200" height="200"/>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="right" class="title">姓名:</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td align="right" class="title">性别:</td>
+                    <td>?</td>
+                </tr>
+                <tr>
+                    <td align="right" class="title">登录次数:</td>
+                    <td>2 次</td>
+                </tr>
+                <tr>
+                    <td align="right" class="title">饮食口味:</td>
+                    <td>??</td>
+                </tr>
+                <tr>
+                    <td align="right" class="title">注册时间:</td>
+                    <td>2017-11-07 01:01:49</td>
+                </tr>
+                <tr>
+                    <td align="right" class="title">职业:</td>
+                    <td></td>
+
+                    <td align="right" class="title">账户状态:</td>
+                    <td>已审批</td>
+                </tr>
+                <tr>
+                    <td align="right" class="title">手机:</td>
+                    <td></td>
+
+                    <td width="15%" align="right" class="title">邮箱:</td>
+                    <td width="35%">111@qq.com</td>
+                </tr>
+
+
+            </table>
+
+
+            <div class="box">
+                <div class="title"><strong>推荐菜品</strong></div>
+                <div class="content">
+                    <div class="image-items">
+                        <div style="padding:40px;">暂无相关商品</div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="fn-clear"></div>
+<div id="myfooter"></div>
+
+
+</body>
+</html>

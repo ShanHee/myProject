@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>系统首页</title>
+    <link rel="stylesheet" href="/meal/e/css/index.css" type="text/css"></link>
+
+    <link rel="stylesheet" href="/meal/e/css/box.all.css" type="text/css"></link>
+
+    <link rel="stylesheet" href="/meal/e/css/leaveword.css" type="text/css"></link>
+
+
+    <script src="/meal/webui/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+
+            $(".modifyShuliang").each(function () {
+                var spno = $(this).attr("spno");
+
+                var spid = $(this).attr("spid");
+                $(this).click(function () {
+
+
+                    $("#sp" + spno + "Shuliang").hide();
+                    $("#sp" + spno + "Edit").show();
+
+
+                })
+
+                $("#txt" + spno + "Shuliang").blur(function () {
+
+                    $("#sp" + spno + "Edit").hide();
+                    $("#sp" + spno + "Shuliang").text($(this).val()).show();
+                    window.location.href = "/meal/admin/dingdanmanager.do?actiontype=modifyAmount&forwardurl=/e/shopcart.jsp&spid=" + spid + "&shuliang=" + $(this).val();
+
+                });
+
+
+            });
+
+        });
+
+
+    </script>
+
+
+</head>
+<body>
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $(".main-nav .menus li a").removeClass("current");
+        var headid = 'null';
+        if (headid != 'null') {
+
+            $("#" + headid).addClass("current");
+        }
+
+        $(".exit").click(function () {
+
+            var pageurl_pagescope = $("#pageurl_pagescope").val();
+
+            $.ajax({
+
+                url: encodeURI('/meal/admin/huiyuanmanager.do?actiontype=exit'),
+                method: 'get',
+                success: function () {
+                    window.location.reload();
+                },
+                error: function (xmhttprequest, status, excetpion) {
+                    $.alert("系统错误，错误编码" + status);
+                }
+            })
+
+        })
+    })
+
+</script>
+
+
+<div class="index-toolbar">
+    <div class="wrap">
+
+
+        <a href="/meal/e/login.jsp">用户登录</a>|
+
+        <a href="/meal/e/register.jsp">用户注册</a>|
+        <a href="/meal/e/shregister.jsp">商户注册</a>|
+        <a href="/meal/admin/login.jsp">系统后台</a>
+    </div>
+
+
+</div>
+<div class="page-main-box">
+    <div style="font-size: 28px; color:#188eee; font-weight: bold; width:400px; line-height:30px; font-family:tahoma, arial, Microsoft YaHei, Hiragino Sans GB; padding: 15px 10px;"
+         class="fn-left">
+        在线订餐系统
+
+    </div>
+    <form id="searchForm2" action="/meal/e/searchsp.jsp" method="post">
+        <input type="hidden" name="actiontype" value="search"/>
+        <input type="hidden" name="forwardurl" value="/e/searchsp.jsp"/>
+        <div class="search-box">
+            <div class="search-text">
+            </div>
+            <div class="keyword">
+                <input type="text" placeholder="美食名称" id="spname" name="spname">
+            </div>
+            <div class="so">
+                <input type="submit" class="sobtn" id="btnSearch" value="搜索" name="btnSearch">
+            </div>
+            <div class="error-container">
+
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+</div>
+
+
+<div class="main-nav">
+    <div class="wrap">
+        <ul class="menus clearfix">
+            <li><a id="1" class="current" href="/meal./index.html?headid=1">首页</a></li>
+            <li><a id="7" class="" href="/meal./onlineMerchant.html?headid=7">在线商户</a></li>
+            <li><a id="8" class="" href="/meal./chineseFood.html?headid=8">中餐</a></li>
+            <li><a id="9" class="" href="/meal./westFood.html?headid=9">西餐</a></li>
+            <li><a id="10" class="" href="/meal./hotPot.html?headid=10">火锅</a></li>
+            <li><a id="11" class="" href="/meal./buffetItems.html?headid=11">自助餐</a></li>
+            <li><a id="12" class="" href="/meal./xiaoChaoItems.html?headid=12">家常小炒</a></li>
+            <li><a id="13" class="" href="/meal./seaFoodItems.html?headid=13">海鲜</a></li>
+            <li><a id="14" class="" href="/meal./noodleItems.html?headid=14">面食</a></li>
+            <li><a id="17" class="" href="/meal./fineFood.html?headid=17">美食资讯</a></li>
+            <li><a id="16" class="" href="/meal./cart.html?headid=16">购物车</a></li>
+            <li><a id="18" class="" href="/meal./aboutUs.html?headid=18">关于我们</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="fn-clear"></div>
+<div class="pageinfo">
+
+</div>
+
+
+<div class="wrap">
+    <div class="cover-title">
+        当前位置：<a href="/meal/e/index.jsp">首页</a> &gt;&gt; 购物车
+    </div>
+</div>
+
+
+<div class="fn-clear"></div>
+
+<div class="wrap" style="min-height: 500px;">
+    <div class="cartcon">
+        <div class="cartneirong">
+
+
+            <div style="line-height:45px;padding-left:30px;background-color:#188eee;color:#fff;font-size:24px;">
+                店铺:SH001 <a style="font-size:14px;color:#fff;" href="#"><i class="fa fa-user"></i>联系卖家</a>
+            </div>
+            <div style="height: 35px; line-height: 35px; border-bottom-color: rgb(204, 204, 204);
+                border-bottom-width: 1px; border-bottom-style: solid;">
+
+
+                <ul>
+                    <li style="width: 100px;"><b>商品图片</b></li>
+                    <li style="width: 130px;"><b>商品编号</b></li>
+                    <li style="width: 200px;"><b>商品名称</b></li>
+
+                    <li style="width: 100px;"><b>价格(元)</b></li>
+
+                    <li style="width: 100px;"><b>数量</b></li>
+                    <li style="width: 100px;"><b>操作</b></li>
+                </ul>
+            </div>
+            <div class="cart_prolist">
+
+
+                <ul>
+                    <li style="width: 100px;clear:both;"><a href="#" target="_blank">
+                        <img style="margin-top: 5px;"
+                             src="/meal/upload/temp/8b82b9014a90f603404c67a33d12b31bb151ed52.jpg" width="60"
+                             height="60"></a></li>
+                    <li style="width: 130px;">
+                        <input id="itemid" name="itemid" value="079725" type="hidden">
+                        <a href="shangpindetails.jsp?id=0" target="_blank">SP0004</a>
+                    </li>
+                    <li style="width: 200px;height:60px;overflow:hidden;">福牛面道</li>
+
+
+                    <li style="width: 100px;">8.0元</li>
+
+                    <li style="width: 120px;">
+                        <span id="spSP0004Shuliang"> 1</span>
+                        <span style="display:none;" id="spSP0004Edit"> <input id="txtSP0004Shuliang" type="text"
+                                                                              value="1" style="width:20px"/> </span>
+                    </li>
+
+                    <li style="width: 100px;">
+
+                        <a spid="4" spno="SP0004" class="modifyShuliang" href="#">
+                            修改数量
+                        </a>
+                        <a href="/meal/admin/dingdanmanager.do?actiontype=removeShangpin&forwardurl=/e/shopcart.jsp&spid=4">移除</a>
+                    </li>
+
+                </ul>
+
+                <ul>
+                    <li style="width: 100px;clear:both;"><a href="#" target="_blank">
+                        <img style="margin-top: 5px;"
+                             src="/meal/upload/temp/4bed2e738bd4b31c1422d93e80d6277f9e2ff81d.jpg" width="60"
+                             height="60"></a></li>
+                    <li style="width: 130px;">
+                        <input id="itemid" name="itemid" value="079725" type="hidden">
+                        <a href="shangpindetails.jsp?id=0" target="_blank">SP0001</a>
+                    </li>
+                    <li style="width: 200px;height:60px;overflow:hidden;">海鲜</li>
+
+
+                    <li style="width: 100px;">15.0元</li>
+
+                    <li style="width: 120px;">
+                        <span id="spSP0001Shuliang"> 1</span>
+                        <span style="display:none;" id="spSP0001Edit"> <input id="txtSP0001Shuliang" type="text"
+                                                                              value="1" style="width:20px"/> </span>
+                    </li>
+
+                    <li style="width: 100px;">
+
+                        <a spid="1" spno="SP0001" class="modifyShuliang" href="#">
+                            修改数量
+                        </a>
+                        <a href="/meal/admin/dingdanmanager.do?actiontype=removeShangpin&forwardurl=/e/shopcart.jsp&spid=1">移除</a>
+                    </li>
+
+                </ul>
+
+
+                <div style="height: 1px; line-height: 1px; clear: both;">
+                </div>
+
+            </div>
+
+            <div style="height: 50px; line-height: 50px; padding-left: 20px; clear: both;">
+                <div style="width: 400px; margin-top: 0px !important; float: left;">
+                    <a href="/meal/admin/dingdanmanager.do?actiontype=clearshopcart&forwardurl=/e/shopcart.jsp"> <img
+                            src="images/cart_n_kong.png"/>
+                        清空购物车
+                    </a>
+                </div>
+                <div style="width:680px; float: right;">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td style="font-size: 14px;">
+                                应付总额：
+
+                                <font style="font-family: 微软雅黑; font-size: 16px; font-weight: 600;" color="#ec435a">
+
+                                    23.0元
+
+                                </font>
+                            </td>
+                            <td>
+                                <a class="btn btn-default" href="shangpinlist.jsp">
+                                    继续购物
+                                </a>
+
+                                <a class="btn btn-default" href="xiadan.jsp">
+                                    提交订单
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--购物车底部总计-->
+            <div style="height: 1px; line-height: 1px; clear: both; font-size: 1px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fn-clear"></div>
+
+
+<div class="wrap">
+    <div class="frendlink">
+        <strong>友情链接：</strong>
+
+        <a target="_blank" href="http://mall.jumei.com">聚美优品</a>
+
+
+    </div>
+
+
+</div>
+<div class="fn-clear"></div>
+<div>
+    <div id="footer_bg">
+        <div id="footer">在线点餐</div>
+    </div>
+</div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>付款</title>
+    <link rel="stylesheet" href="../../css/framework/box/index.css" type="text/css"/>
+    <link href="../../css/framework/box/box.all.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/framework/admin/web2table.css" rel="stylesheet" type="text/css"/>
+    <link href="../../css/framework/other/uploadify.css" rel="stylesheet" type="text/css"/>
+    <script src="../../js/libs/jquery-1.9.0.js" type="text/javascript"></script>
+    <script src="../../js/libs/jquery.uploadify-3.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../css/libs/jquery-validation/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../../css/libs/jquery-validation/jquery.metadata.js"></script>
+    <script type="text/javascript" src="../../css/libs/jquery-validation/messages_cn.js"></script>
+    <script type="text/javascript" src="../../js/libs/kindeditor-min.js"></script>
+    <script type="text/javascript" src="../../js/libs/zh_CN.js"></script>
+    <script src="../../js/controllers/userTemplate.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+        });
+    </script>
+</head>
+<body style="padding:10px">
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $(".main-nav .menus li a").removeClass("current");
+        var headid = 'null';
+        if (headid != 'null') {
+
+            $("#" + headid).addClass("current");
+        }
+
+        $(".exit").click(function () {
+
+            var pageurl_pagescope = $("#pageurl_pagescope").val();
+
+            $.ajax({
+
+                url: encodeURI('/meal/admin/huiyuanmanager.do?actiontype=exit'),
+                method: 'get',
+                success: function () {
+                    window.location.reload();
+                },
+                error: function (xmhttprequest, status, excetpion) {
+                    $.alert("系统错误，错误编码" + status);
+                }
+            })
+
+        })
+    })
+
+</script>
+<div id="myheader">
+</div>
+<div class="wrap">
+    <div class="cover-title">
+        当前位置：<a href="../index.html">首页</a> &gt;&gt; 购物车
+    </div>
+</div>
+
+<div class="fn-clear"></div>
+<div class="wrap">
+    <div class="main">
+
+
+        <script type="text/javascript">
+
+            $(function () {
+
+                $("#side-menu .menu-group li").removeClass("current");
+
+                var seedid = 'null';
+
+                if (seedid != "null")
+                    $("#" + seedid).addClass("current");
+                else
+                    $("#m1").addClass("current");
+
+            })
+
+        </script>
+        <div id="side-menu">
+
+
+            <div class="menu-group">
+                <h2>
+                    订单信息
+                </h2>
+                <ul>
+
+                    <li id="101">
+                        <a href="/meal/admin/dingdanmanager.do?seedid=101&xiadanren=111&isurl=1&actiontype=get&forwardurl=/e/huiyuan/dingdanmanager.jsp">我的订单</a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+            <div class="menu-group">
+                <h2>
+                    账户信息
+                </h2>
+                <ul>
+                    <li id="m201" class="current">
+                        <a href="/meal/e/huiyuan/accountinfo.jsp?seedid=m201">账户信息</a>
+                    </li>
+                    <li id="m202">
+                        <a href="/meal/e/huiyuan/yue.jsp?seedid=m202">账户余额</a>
+                    </li>
+                    <li id="m206">
+                        <a href="/meal/e/huiyuan/jifen.jsp?seedid=m206">我的积分</a>
+                    </li>
+                    <li id="m203">
+                        <a href="/meal/e/huiyuan/modifypw.jsp?seedid=m203" target="_self">密码修改</a>
+                    </li>
+                    <li id="m204">
+                        <a href="/meal/e/huiyuan/modifyinfo.jsp?seedid=m204" target="_self">信息修改</a>
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </div>
+        <div class="main-content">
+            <div class="search-title">
+                <h2>订单管理-> 在线付款</h2>
+                <div class="description"></div>
+            </div>
+            <table cellpadding="0" cellspacing="1" class="grid" width="100%">
+
+                <tr>
+                    <td colspan='2'>
+<!------------------------------------------------------
+------------------------------------------------------
+------------------------------------------------------
+当账户余额不足时的逻辑判断-
+------------------------------------------------------------
+----------------------------------------------------------
+------------------------------------------------------->
+                    </td>
+
+                </tr>
+                <tr>
+                    <td align="right">订单号:</td>
+                    <td>DD20171907231100410</td>
+
+                    <td align="right">下单时间:</td>
+                    <td>Tue Nov 07 23:19:00 CST 2017</td>
+                </tr>
+                <tr>
+                    <td align="right">下单人:</td>
+                    <td>111</td>
+
+                    <td align="right">总价格:</td>
+                    <td>31.0</td>
+                </tr>
+                <tr>
+                    <td align="right">状态:</td>
+                    <td>待付款</td>
+
+
+                    <td align="right">收货地址:</td>
+                    <td>2222</td>
+                </tr>
+                <tr>
+                    <td align="right">收货人电话:</td>
+                    <td>111</td>
+
+                    <td align="right">收货人姓名:</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td colspan="4">
+
+                        <table border="0" cellspacing="1" class="whitegrid"
+                               cellpadding="0" width="100%">
+
+                            <tr>
+                                <td>快照</td>
+                                <td>商品名</td>
+                                <td>商品数量</td>
+                                <td>商品价格</td>
+                            </tr>
+
+
+                            <tr>
+
+                                <td bgcolor="#ffffff"><img
+                                        src='/meal/upload/temp/8b82b9014a90f603404c67a33d12b31bb151ed52.jpg'
+                                        width="60px" height="60px"/>
+                                </td>
+                                <td>福牛面道</td>
+
+                                <td>2</td>
+
+                                <td>8.5</td>
+                            </tr>
+
+
+                            <tr>
+
+                                <td bgcolor="#ffffff"><img
+                                        src='/meal/upload/temp/4bed2e738bd4b31c1422d93e80d6277f9e2ff81d.jpg'
+                                        width="60px" height="60px"/>
+                                </td>
+                                <td>海鲜</td>
+
+                                <td>1</td>
+
+                                <td>15.5</td>
+                            </tr>
+
+
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="4">
+
+
+                        支付金额:31.0￥
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="4">
+
+
+                        <form name="payform" method="post" action="/meal/admin/dingdanmanager.do">
+
+                            <input type="hidden" name="actiontype" value="payfor"/>
+
+                            <input type="hidden" name="accountname" value="111"/>
+                            <input type="hidden" name="errorurl" value="/e/huiyuan/fukuan.jsp"/>
+                            <input type="hidden" name="forwardurl" value="/e/huiyuan/fukuanresult.jsp"/>
+                            <input type="hidden" name="ddid" value="10"/>
+                            <span class="ui-button">
+						          <input type="submit" class="ui-button-text" value="确定付款"/>
+						       </span>
+
+                        </form>
+
+
+                    </td>
+
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

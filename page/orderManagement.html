@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>订单信息</title>
+    <link rel="stylesheet" href="../css/framework/box/index.css" type="text/css"/>
+    <link href="../css/framework/box/box.all.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/framework/admin/web2table.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/libs/treetable/skin/jquery.treetable.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/libs/artDialog/skins/default.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/libs/treetable/skin/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../js/libs/jquery-1.9.0.js"></script>
+    <script src="../css/libs/artDialog/jquery.artDialog.source.js" type="text/javascript"></script>
+    <script src="../css/libs/artDialog/iframeTools.source.js" type="text/javascript"></script>
+    <script src="../css/libs/treetable/js/jquery.treetable.js" type="text/javascript"></script>
+    <script src="../js/controllers/template.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnDelete").click(function () {
+                if ($(".check:checked").length < 1) {
+                    $.dialog.alert("请选择需要删除的记录");
+                    return;
+                }
+                $(".check:checked").each(function (index, domEle) {
+                    var id = $(domEle).val();
+                    $.dialog.confirm("你确定要注销订单信息?", function () {
+                        window.location.href = encodeURI('/meal/admin/dingdanmanager.do?actiontype=delete&id=' + id);
+                    });
+                });
+            });
+            $("#btnCheckAll").click(function () {
+                var ischeck = false;
+                $(".check").each(function () {
+                    if ($(this).is(":checked")) {
+                        $(this).prop("checked", "");
+                        ischeck = false;
+                    }
+                    else {
+                        $(this).prop("checked", "true");
+                        ischeck = true;
+                    }
+                });
+                if ($(this).text() == "选择记录")
+                    $(this).text("取消选择");
+                else
+                    $(this).text("选择记录");
+            })
+        });
+    </script>
+</head>
+<body>
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $(".main-nav .menus li a").removeClass("current");
+        var headid = 'null';
+        if (headid != 'null') {
+
+            $("#" + headid).addClass("current");
+        }
+
+        $(".exit").click(function () {
+
+            var pageurl_pagescope = $("#pageurl_pagescope").val();
+
+            $.ajax({
+
+                url: encodeURI('/meal/admin/huiyuanmanager.do?actiontype=exit'),
+                method: 'get',
+                success: function () {
+                    window.location.reload();
+                },
+                error: function (xmhttprequest, status, excetpion) {
+                    $.alert("系统错误，错误编码" + status);
+                }
+            })
+
+        })
+    })
+
+</script>
+<div id="myheader">
+</div>
+
+
+
+
+<div class="wrap">
+    <div class="cover-title">
+        当前位置：<a href="index.html">首页</a> &gt;&gt; 购物车
+    </div>
+</div>
+<div class="fn-clear"></div>
+<div class="wrap">
+    <div class="main">
+
+
+        <script type="text/javascript">
+
+            $(function () {
+
+                $("#side-menu .menu-group li").removeClass("current");
+
+                var seedid = 'null';
+
+                if (seedid != "null")
+                    $("#" + seedid).addClass("current");
+                else
+                    $("#m1").addClass("current");
+
+            })
+
+        </script>
+        <div id="side-menu">
+
+
+            <div class="menu-group">
+                <h2>
+                    订单信息
+                </h2>
+                <ul>
+
+                    <li id="101">
+                        <a href="/meal/admin/dingdanmanager.do?seedid=101&xiadanren=111&isurl=1&actiontype=get&forwardurl=/e/huiyuan/dingdanmanager.jsp">我的订单</a>
+                    </li>
+
+
+                </ul>
+            </div>
+
+            <div class="menu-group">
+                <h2>
+                    账户信息
+                </h2>
+                <ul>
+                    <li id="m201" class="current">
+                        <a href="/meal/e/huiyuan/accountinfo.jsp?seedid=m201">账户信息</a>
+                    </li>
+                    <li id="m202">
+                        <a href="/meal/e/huiyuan/yue.jsp?seedid=m202">账户余额</a>
+                    </li>
+                    <li id="m206">
+                        <a href="/meal/e/huiyuan/jifen.jsp?seedid=m206">我的积分</a>
+                    </li>
+                    <li id="m203">
+                        <a href="/meal/e/huiyuan/modifypw.jsp?seedid=m203" target="_self">密码修改</a>
+                    </li>
+                    <li id="m204">
+                        <a href="/meal/e/huiyuan/modifyinfo.jsp?seedid=m204" target="_self">信息修改</a>
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </div>
+        <div class="main-content">
+            <div class="search-title">
+                <h2>订单管理</h2>
+                <div class="description"></div>
+            </div>
+            <!-- 搜索控件开始 -->
+            <div class="search-options">
+                <form id="searchForm"
+                      action="/meal/admin/dingdanmanager.do"
+                      method="post">
+                    <table class="grid" cellspacing="1" width="100%">
+                        <tbody>
+                        <tr>
+                            <td>订单号 <input name="ddno" value=""
+                                           class="input-txt" type="text" id="ddno"/>
+                                <input type="hidden" name="actiontype" value="search"/>
+                                <input type="hidden" name="seedid" value=""/>
+                                <input type="hidden" name="forwardurl" value="/e/huiyuan/dingdanmanager.jsp"/>
+                                <div class="ui-button">
+                                    <input type="submit" value="搜索" id="btnSearch"
+                                           class="ui-button-text"/>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <!-- 搜索控件结束 -->
+            <div class="clear"></div>
+            <div class="action-details">
+
+            </div>
+            <table id="module" width="100%" border="0" cellspacing="0"
+                   cellpadding="0" class="ui-record-table">
+                <thead>
+                <tr>
+
+                    <th><b>订单号</b>
+                    </th>
+                    <th><b>下单时间</b>
+                    </th>
+                    <th><b>下单人</b>
+                    </th>
+                    <th><b>总价格</b>
+                    </th>
+                    <th><b>状态</b>
+                    </th>
+
+                    <th><b>收货人电话</b>
+                    </th>
+                    <th><b>收货人地址</b>
+                    </th>
+
+
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+
+                <tr>
+
+                    <td>DD20173617120309190</td>
+                    <td>2017-03-17 12:36:09</td>
+                    <td>H001</td>
+                    <td>12.0</td>
+                    <td>已收货</td>
+
+                    <td>13732921234</td>
+                    <td>杭州市XXX</td>
+
+                    <td>
+
+
+                        <a href="/meal/e/huiyuan/dingdandetails.jsp?id=5">查看</a>
+                    </td>
+                </tr>
+
+
+                <tr>
+
+                    <td>DD20172217130340160</td>
+                    <td>2017-03-17 01:22:40</td>
+                    <td>H002</td>
+                    <td>90.0</td>
+                    <td>已付款</td>
+
+                    <td>13732921234</td>
+                    <td>杭州市XXX</td>
+
+                    <td>
+
+
+                        <a href="/meal/e/huiyuan/dingdandetails.jsp?id=6">查看</a>
+                    </td>
+                </tr>
+
+
+                <tr>
+
+                    <td>DD20172217130341530</td>
+                    <td>2017-03-17 01:22:41</td>
+                    <td>H002</td>
+                    <td>85.0</td>
+                    <td>已收货</td>
+
+                    <td>13732921234</td>
+                    <td>杭州市XXX</td>
+
+                    <td>
+
+
+                        <a href="/meal/e/huiyuan/dingdandetails.jsp?id=7">查看</a>
+                    </td>
+                </tr>
+
+
+                <tr>
+
+                    <td>DD20170407011149370</td>
+                    <td>2017-11-07 01:04:49</td>
+                    <td>111</td>
+                    <td>100.0</td>
+                    <td>???</td>
+
+                    <td>11</td>
+                    <td>11</td>
+
+                    <td>
+
+
+                        <a href="/meal/e/huiyuan/dingdandetails.jsp?id=8">查看</a>
+                    </td>
+                </tr>
+
+
+                <tr>
+
+                    <td>DD20170507011133140</td>
+                    <td>2017-11-07 01:05:33</td>
+                    <td>111</td>
+                    <td>15.0</td>
+                    <td>???</td>
+
+                    <td></td>
+                    <td></td>
+
+                    <td>
+
+
+                        <a href="/meal/e/huiyuan/dingdandetails.jsp?id=9">查看</a>
+                    </td>
+                </tr>
+
+
+                <tr>
+
+                    <td>DD20171907231100410</td>
+                    <td>2017-11-07 11:19:00</td>
+                    <td>111</td>
+                    <td>31.0</td>
+                    <td>待付款</td>
+
+                    <td>111</td>
+                    <td>2222</td>
+
+                    <td>
+
+
+                        <a href="/meal/e/huiyuan/fukuan.jsp?id=10">付款</a>
+
+
+                        <a href="/meal/e/huiyuan/dingdandetails.jsp?id=10">查看</a>
+                    </td>
+                </tr>
+
+
+                </tbody>
+            </table>
+            <div class="clear"></div>
+            <div class="page">
+                <div class="page_num">
+                    共6条-1页-每页10条
+                </div>
+                <div class="manu">
+                    <a class="current daowenpager-pagebutton" pageindex="1">1</a>
+                    <input id="daowenpager_txtgopage" type="text" style="width: 30px" value="1">
+                    <a class="next daowenpager-btngopage" href="#">跳转到</a>
+                </div>
+                <input type="hidden" name="forwardurl" value="/e/huiyuan/dingdanmanager.jsp"/><input type="hidden"
+                                                                                                     name="actiontype"
+                                                                                                     value="get"/></div>
+            <script type="text/javascript">
+                $(function () {
+                    var attcheFormId = "searchForm";
+                    var attcheForm;
+                    if (attcheFormId != "null") {
+                        attcheForm = $("#" + attcheFormId);
+                    } else            attcheForm = $(this).closest("form");
+                    $(".daowenpager-pagebutton").click(function () {
+                        if (attcheForm.find("[name=currentpageindex]:hidden").size() <= 0) {
+                            attcheForm.append('<input type="hidden" name="currentpageindex"  value="' + $(this).attr("pageindex") + '"/>');
+                        }
+                        else                          attcheForm.find("[name=currentpageindex]:hidden").val($(this).attr("pageindex"));
+                        attcheForm[0].submit();
+                    })
+                    $(".daowenpager-btngopage").click(function () {
+                        if (attcheForm.find("[name=currentpageindex]:hidden").size() <= 0) {
+                            attcheForm.append('<input type="hidden" name="currentpageindex"  value="' + $("#daowenpager_txtgopage").val() + '"/>');
+                        }
+                        else                          attcheForm.find("[name=currentpageindex]:hidden").val($("#daowenpager_txtgopage").val());
+                        attcheForm.submit()
+                    })
+                })
+            </script>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="myfooter"></div>
+
+
+</body>
+</html>

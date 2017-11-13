@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加至购物车</title>
+    <link rel="stylesheet" href="../css/framework/box/index.css" type="text/css"/>
+    <link href="../css/framework/admin/web2table.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../css/framework/box/index.css" type="text/css"/>
+    <link href="../css/framework/box/box.all.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/framework/box/leaveword.css" rel="stylesheet" type="text/css"/>
+    <script src="../js/libs/jquery-1.5.2.min.js" type="text/javascript"></script>
+    <script src="../js/controllers/template.js" type="text/javascript"></script>
+    <script src="../js/controllers/addCartDetail.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(function(){
+
+            $("#btnAgree").click(function(){
+
+                var temaccountname= $("#hidCurrenthy").val();
+                var temreurl=$("#reUrl").val();
+                if(temaccountname==""){
+
+                    window.location.href="login.jsp?reurl="+temreurl;
+                    return;
+
+                }
+                var   xinxiid=$(this).attr("xinxiid");
+                $.ajax({
+
+                    url:encodeURI('/meal/admin/xinximanager.do?actiontype=agree&id='+xinxiid),
+                    method:'get',
+
+                    success:function(data){
+                        $("#btnAgree").html("<span>"+data+"</span>");
+                    },
+                    error:function(xmhttprequest,status,excetpion){
+                        alert("系统错误，错误编码"+status);
+                    }
+                })
+
+            })
+
+            $("#btnAgainst").click(function(){
+
+                var temaccountname= $("#hidCurrenthy").val();
+                var temreurl=$("#reUrl").val();
+                if(temaccountname==""){
+
+                    window.location.href="login.jsp?reurl="+temreurl;
+                    return;
+
+                }
+                var   xinxiid=$(this).attr("xinxiid");
+                $.ajax({
+
+                    url:encodeURI('/meal/admin/xinximanager.do?actiontype=against&id='+xinxiid),
+                    method:'get',
+
+                    success:function(data){
+                        $("#btnAgainst").html("<span>"+data+"</span>");
+                    },
+                    error:function(xmhttprequest,status,excetpion){
+                        alert("系统错误，错误编码"+status);
+                    }
+                })
+
+            })
+
+        })
+
+
+    </script>
+</head>
+<body>
+
+<input type="hidden" id="commentresurl" value="/e/shangpininfo.jsp?id=4">
+
+<script type="text/javascript">
+
+    $(function(){
+
+        $(".main-nav .menus li a").removeClass("current");
+        var headid='null';
+        if (headid != 'null') {
+
+            $("#"+headid).addClass("current");
+        }
+
+        $(".exit").click(function(){
+
+            var pageurl_pagescope= $("#pageurl_pagescope").val();
+
+            $.ajax({
+
+                url:encodeURI('/meal/admin/huiyuanmanager.do?actiontype=exit'),
+                method:'get',
+                success:function(){
+                    window.location.reload();
+                },
+                error:function(xmhttprequest,status,excetpion){
+                    $.alert("系统错误，错误编码"+status);
+                }
+            })
+
+        })
+    })
+
+</script>
+
+<div id="myheader"></div>
+
+<div class="wrap">
+    <div class="cover-title">
+        当前位置：<a href="./index.html">首页</a> &gt;&gt; 商品信息
+    </div>
+</div>
+<input type="hidden" id="reUrl" name="reurl" value="/e/shangpininfo.jsp?id=4"/>
+
+<div class="fn-clear"></div>
+
+<div class="wrap">
+    <div >
+
+        <div class="info" id="cartInfo">
+        </div>
+
+
+        <script type="text/javascript">
+
+            $(function(){
+
+                $("[name=dcontent]").keydown(function(){
+
+                    var maxLength= $(this).attr("maxlength");
+
+                    var hasInputed=$(this).val().length;
+
+                    if(hasInputed<maxLength);{
+
+                        $("#hasInputedCount").html(hasInputed);
+                        $("#removeCount").html(maxLength-hasInputed);
+
+
+                    }
+
+
+                });
+                $("#btnComment").click(function(){
+                    var temaccountname= $("#hidCurrenthy").val();
+                    var temreturnurl=$("#commentresurl").val();
+
+                    var temdcontent=$("[name=dcontent]").val();
+                    $("#forwardurl").val(temreturnurl);
+
+
+                    if(temaccountname==""){
+
+                        window.location.href="login.jsp?reurl="+temreturnurl;
+                        return false;
+
+                    }
+
+                    if(temdcontent==""){
+                        alert("请填写评论内容");
+                        return false;
+                    }
+                    if(temdcontent.length<8){
+
+                        alert("评论内容至少8个字符");
+                        return false;
+                    }
+
+                });
+
+            })
+
+        </script>
+        <div class="comment-box">
+            <div class="comment-list">
+
+                <h4>评论信息</h4><ul></ul>
+
+            </div>
+
+            <div class="comment-container">
+                <div class="inner-container">
+                    <form id="commentForm" method="post"
+                          action="/meal/admin/commentmanager.do">
+
+
+                        <input type="hidden" name="actiontype" value="save"/>
+                        <input type="hidden"   name="belongid"  value="4"/>
+                        <input type="hidden"  name="type"   value="shangpin"/>
+                        <input type="hidden" id="hidCurrenthy" name="currenthy" value=""/>
+                        <input type="hidden" name="photo" value=""/>
+                        <input name="forwardurl" type="hidden" id="forwardurl"  value=""/>
+                        <div class="comment-message">
+
+
+                            <textarea class="gray-color" name="dcontent" maxlength="200"  placeholder="简短的评论"  style="background-color:rgb(255, 255, 255); "></textarea>
+
+                        </div>
+                        <div class="comment-action-box">
+
+                            <span class="white-color"><span id="hasInputedCount">0</span>/<strong id="removeCount">210</strong>字</span>
+                            <button id="btnComment" class="btn">评论</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="myfooter"></div>
+
+
+
+</body>
+</html>
